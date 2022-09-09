@@ -24,14 +24,14 @@ public class AggregateTransformer implements Transformer<String, String, KeyValu
   public void init(ProcessorContext context) {
     store = context.getStateStore("store");
     localContext = context;
-    cancel = localContext.schedule(Duration.ofSeconds(5),
+    cancel = localContext.schedule(Duration.ofSeconds(1),
         PunctuationType.WALL_CLOCK_TIME,
         (timestamp) -> punctuate(timestamp));
   }
 
   @Override
   public KeyValue<String, String> transform(String key, String value) {
-
+    logger.info ("Storing record...[{}] => [{}]", key, value);
     store.put(key, ValueAndTimestamp.make(value, localContext.timestamp()));
 
     return null;
