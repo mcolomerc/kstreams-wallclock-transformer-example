@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
 
-    static Logger logger = LoggerFactory.getLogger(App.class.getName());
+    static Logger logger = LoggerFactory.getLogger(AppTest.class.getName());
 
     static final String InputTopic1 = "in1";
     static final String OutputTopic = "out";
